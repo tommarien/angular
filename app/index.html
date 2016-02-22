@@ -70,8 +70,8 @@
 
     <div id="users" ng-switch="viewMode">
         <div ng-switch-when="detail">
-            <div class="row" >
-                <div class="col-sm-6" ng-repeat="user in users">
+            <div class="row" infinite-scroll="showMore()" infinite-scroll-distance="1" infinite-scroll-disabled="scrollDisabled">
+                <div class="col-sm-6" ng-repeat="user in users" >
                     <div class="panel panel-default">
 
                         <div class="panel-body">
@@ -97,7 +97,7 @@
         </div>
 
         <div ng-switch-default>
-            <table class="table table-striped">
+            <table class="table table-striped" infinite-scroll="showMore()" infinite-scroll-distance="1" infinite-scroll-disabled="scrollDisabled">
                 <thead>
                 <tr>
                     <td></td>
@@ -117,8 +117,6 @@
             </table>
         </div>
     </div>
-    <button ng-click="showMore()" class="btn btn-default">More</button>
-
 
 </div> <!-- /container -->
 
@@ -127,6 +125,7 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="bower_components/angular/angular.js"></script>
+<script src='bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js'></script>
 <script src="app.js"></script>
 <script src="userService.js"></script>
 </body>
