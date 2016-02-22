@@ -59,4 +59,6 @@ node_modules
 *.ipr
 *.iws
 
+dist
+
 .DS_Store
