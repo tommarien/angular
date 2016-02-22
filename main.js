@@ -1,8 +1,7 @@
 // main.js
 import userService from './userService';
 import $ from 'jquery';
-
-require("./styles.scss");
+import './styles.scss';
 
 const users = userService.getAll();
 
