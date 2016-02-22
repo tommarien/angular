@@ -8,6 +8,11 @@
         .x-ng-cloak {
             display: none !important;
         }
+
+        .messageStyle {
+            background-color: red;
+            font-size: x-large;
+        }
     </style>
 </head>
 <body ng-app="myApp" ng-cloak>
@@ -30,9 +35,30 @@
     Name: <input type="text" ng-model="customer.name">
     City: <input type="text" ng-model="customer.city">
     <button ng-click="onClick()">Add</button>
+    <br>
+    Filter: <input type="text" ng-model="filterExp">
+
     <ul>
-        <li ng-repeat="cust in customers">{{cust.name}} - {{cust.city}}</li>
+        <li ng-repeat="cust in customers | orderBy:'city' | filter:filterExp">{{cust.name}} - {{cust.city}}</li>
     </ul>
+
+    <hr/>
+    <div ng-show="showImage">
+        <img ng-src="http://euri.com/Content/images/assets/{{imageName}}.png"/>
+        <a ng-href="http://euri.com/Content/images/assets/{{imageName}}.png">link</a>
+    </div>
+    <!-- better as this does not render the block anymore also no watches
+
+    <div ng-if="showImage">
+            <img ng-src="http://euri.com/Content/images/assets/{{imageName}}.png"/>
+            <a ng-href="http://euri.com/Content/images/assets/{{imageName}}.png">link</a>
+    </div>
+        -->
+    <br>
+    <button ng-click="toggleImage()">Toggle</button>
+    <br>
+    <span ng-class="{'messageStyle': showImage}">Hello Euricommer</span>
+
 </div>
 <script src="bower_components/angular/angular.js"></script>
 <script src="app.js"></script>
