@@ -4,14 +4,10 @@
     angular.module('myApp', [])
         .controller('MyController', MyController);
 
-    function MyController($scope) {
+    function MyController($scope, myService) {
         $scope.qty = 10;
         $scope.cost = 2;
-        $scope.customers = [
-            {name: 'Euricom', city: 'Mechelen'},
-            {name: 'Apple', city: 'Cupertino'},
-            {name: 'Bank Delen', city: 'Antwerpen'},
-        ];
+        $scope.customers = myService.getCustomers();
 
         $scope.imageName = 'logo';
         $scope.showImage = 'true';

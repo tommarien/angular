@@ -17,7 +17,7 @@
 </head>
 <body ng-app="myApp" ng-cloak>
 <div ng-controller="MyController">
-    <b>Invoice:</b>
+   <!-- <b>Invoice:</b>
     <div>
         Quantity: <input type="text" ng-model="qty">
         {{qty}}
@@ -30,7 +30,7 @@
     <div>
         <b>Total:</b> {{qty * cost | currency : '€'}}
     </div>
-    <hr/>
+    <hr/>-->
     Add Customer<br>
     Name: <input type="text" ng-model="customer.name">
     City: <input type="text" ng-model="customer.city">
@@ -62,5 +62,6 @@
 </div>
 <script src="bower_components/angular/angular.js"></script>
 <script src="app.js"></script>
+<script src="myService.js"></script>
 </body>
 </html>
