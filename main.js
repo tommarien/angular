@@ -1,8 +1,9 @@
 // main.js
-var userService = require('./userService');
-var $ = require('jquery');
+import userService from './userService';
+import $ from 'jquery';
 
-var users = userService.getAll();
+const users = userService.getAll();
+
 users.forEach(function (user) {
     $('#list').append('<li>' + user.name + '</li>');
 });

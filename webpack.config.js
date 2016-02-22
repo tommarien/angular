@@ -6,8 +6,13 @@ module.exports = {
         filename: 'bundle.js',
         publicPath: "/assets/",
     },
-    resolve: {
-        root: __dirname,
-        extensions: ['', '.ts', '.js', '.json'],
-    },
+    module: {
+        loaders: [
+            {
+                test: /\.js$/,
+                loader: 'babel-loader',
+                exclude: /(node_modules)/
+            }
+        ]
+    }
 };

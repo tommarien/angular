@@ -1,16 +1,20 @@
-// simple user service
-function userService() {
-    this.getById = function (id) {
-        return {id: 123, name: 'peter'};
+// userService.js
+
+class UserService {
+    constructor() {
     };
 
-    this.getAll = function () {
+    getById(id) {
+        return {id: 123, name: 'peter'}
+    };
+
+    getAll() {
         return [
             {id: 123, name: 'peter'},
-            {id: 222, name: 'robbert'}
-        ];
+            {id: 222, name: 'robbert'},
+            {id: 222, name: 'jan'}
+        ]
     };
 }
 
-// expose userService to other modules
-module.exports = new userService();
+export default new UserService();
