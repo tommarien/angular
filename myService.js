@@ -3,15 +3,18 @@
     angular.module('myApp')
         .factory('myService', myService);
 
-    function myService() {
-        var customers = [
+    function myService($http) {
+/*        var customers = [
             {name: 'Euricom', city: 'Mechelen'},
             {name: 'Apple', city: 'Cupertino'},
             {name: 'Bank Delen', city: 'Antwerpen'},
-        ];
+        ];*/
 
         function getCustomers() {
-            return customers;
+            return $http.get('customers.json')
+                .then(function(response){
+                    return response.data;
+                });
         };
 
         return {

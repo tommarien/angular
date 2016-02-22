@@ -39,8 +39,14 @@
     Filter: <input type="text" ng-model="filterExp">
 
     <ul>
-        <li ng-repeat="cust in customers | orderBy:'city' | filter:filterExp">{{cust.name}} - {{cust.city}}</li>
+        <li ng-repeat="cust in customers | orderBy:'city' | filter:filterExp">[{{$index}}] {{cust.name}} - {{cust.city}}</li>
     </ul>
+
+    <pre>
+        <code>
+        {{customers | json}}
+    </code>
+    </pre>
 
     <hr/>
     <div ng-show="showImage">

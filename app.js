@@ -7,7 +7,14 @@
     function MyController($scope, myService) {
         $scope.qty = 10;
         $scope.cost = 2;
-        $scope.customers = myService.getCustomers();
+
+        myService.getCustomers()
+            .then(function (customers) {
+                $scope.customers = customers;
+            })
+            .catch(function(err){
+                console.log(err);
+            });
 
         $scope.imageName = 'logo';
         $scope.showImage = 'true';
