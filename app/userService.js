@@ -5,8 +5,8 @@
         .factory('userService', userService);
 
     function userService($http) {
-        function getAll() {
-            return $http.get('/api/users')
+        function getAll(page, pageSize) {
+            return $http.get('/api/users?page=' + page + '&pageSize=' + pageSize)
                 .then(function (response) {
                     return response.data;
                 })
