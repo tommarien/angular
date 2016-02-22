@@ -24,7 +24,7 @@
             $scope.page = $scope.page + 1;
             userService.getAll($scope.page, $scope.pageSize)
                 .then(function (users) {
-                    if (!users || users.length === 0)
+                    if (!users || users.length < $scope.pageSize)
                     {
                         $scope.scrollDisabled = true;
                     }
