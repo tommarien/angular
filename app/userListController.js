@@ -3,7 +3,26 @@
 
     angular
         .module('myApp.controllers', [])
-        .controller('UserListController', UserListController);
+        .controller('UserListController', UserListController)
+        .controller('AlertController', AlertController);
+
+    function AlertController($scope) {
+        $scope.alert = null;
+
+        $scope.onAddAlert = onAddAlert;
+        $scope.onCloseAlert = onCloseAlert;
+
+        function onAddAlert(){
+            $scope.alert = {
+                msg: "Boeh",
+                type: "warning"
+            }
+        }
+
+        function onCloseAlert(){
+            $scope.alert = null;
+        }
+    }
 
     function UserListController($scope, userService) {
         var page = 0;

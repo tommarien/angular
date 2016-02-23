@@ -9,6 +9,12 @@
 <body ng-app="myApp" ng-cloak>
 
 <div class="container">
+
+    <div ng-controller="AlertController">
+        <uib-alert ng-show="alert" type="{{alert.type}}" close="onCloseAlert()">{{alert.msg}}</uib-alert>
+        <button type="button" class='btn btn-default' ng-click="onAddAlert()">Add Alert</button>
+    </div>
+
     <div ng-controller="UserListController">
 
         <div class="row">
@@ -71,8 +77,8 @@
 </div>
 
 <script src="bower_components/jquery/dist/jquery.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="app.js"></script>
 <script src="userListController.js"></script>
 <script src="userService.js"></script>
