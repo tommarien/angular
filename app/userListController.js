@@ -1,7 +1,8 @@
 (function () {
+    'use strict';
 
     angular
-        .module('myApp')
+        .module('myApp.controllers', [])
         .controller('UserListController', UserListController);
 
     function UserListController($scope, userService) {

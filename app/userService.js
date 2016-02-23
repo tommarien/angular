@@ -1,7 +1,8 @@
 (function () {
+    'use strict';
 
     angular
-        .module('myApp')
+        .module('myApp.services', [])
         .factory('userService', userService);
 
     function userService($http) {
@@ -15,7 +16,7 @@
 
         function remove(id) {
             return $http.delete(`api/users/${id}`)
-                .then(function(response){
+                .then(function (response) {
                     return response.data;
                 });
         }
