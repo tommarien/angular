@@ -15,11 +15,11 @@
             <button type="button" class='btn btn-default' ng-click="onAddAlert()">Add Alert</button>
         </div>-->
 
-
-
     <div ng-controller="UserListController as vm">
 
-        <my-component message="vm.message"></my-component>
+        <!--        <my-component message="vm.message" notify="vm.onNotify()">
+                    <h2>Subbie</h2>
+                </my-component>-->
 
         <div class="row">
             <h1>User List</h1>
@@ -31,48 +31,14 @@
         </div>
 
         <div ng-if="!vm.gridView" class="row">
-            <table class="table-hover table-striped">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Address</th>
-                    <th>City</th>
-                    <th>Zip</th>
-                    <th></th>
-                <tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="user in vm.users">
-                    {{user}}
-                    <td><img class="rowImg" ng-src="{{user.image}}"></td>
-                    <td>{{user.name}}</td>
-                    <td>{{user.email}}</td>
-                    <td>{{user.address}}</td>
-                    <td>{{user.city}}</td>
-                    <td>{{user.zip}}</td>
-                    <td><a href="" ng-click="vm.onDelete(user)">Delete</a></td>
-                <tr>
-                </tbody>
-            </table>
+            <user-grid-component data="vm.users" on-remove="vm.onDelete(user)"></user-grid-component>
             <a src="" ng-click="vm.onLoadMore()">Add More</a>
             <br>
         </div>
 
         <div ng-if="vm.gridView" class="row">
 
-            <div ng-repeat="user in vm.users" class="col-sm-6">
-                <div class="panel panel-primary">
-                    <div class="panel-body">
-                        <img class="gridImg" ng-src="{{user.image}}">
-                        <h2>{{user.name}}</h2>
-                        <p>Age: {{user.age}}</p>
-                        <p>Email: {{user.email}}</p>
-                        <p>Address: {{user.address}} - {{user.zip}} {{user.city}}</p>
-                    </div>
-                </div>
-            </div>
+            <user-list-view-component data="vm.users"></user-list-view-component>
             <a src="" ng-click="vm.onLoadMore()">Add More</a>
             <br>
 
@@ -87,5 +53,8 @@
 <script src="userListController.js"></script>
 <script src="userService.js"></script>
 <script src="myComponent.js"></script>
+<script src="userGridComponent.js"></script>
+<script src="userListViewComponent.js"></script>
+<script src="userDetailComponent.js"></script>
 </body>
 </html>

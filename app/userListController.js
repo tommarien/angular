@@ -38,6 +38,7 @@
         vm.onSwitchView = onSwitchView;
         vm.onLoadMore = onLoadMore;
         vm.onDelete = onDelete;
+        vm.onNotify = onNotify;
 
         initialize();
 
@@ -71,6 +72,10 @@
                 .then(function (resource) {
                     vm.users = vm.users.filter(item => item !== user);
                 })
+        }
+
+        function onNotify(){
+            console.log('onNotify');
         }
     }
 
