@@ -45,7 +45,7 @@
             console.log('delete', user);
 
             userService.remove(user.id)
-                .then(function () {
+                .then(function (resource) {
                     $scope.users = $scope.users.filter(item => item !== user);
                 })
         }
