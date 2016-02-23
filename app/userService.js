@@ -1,44 +1,78 @@
 (function () {
     'use strict';
 
-   /* class UserService {
-        constructor($http) {
-            this.http = $http;
-        }
+    /* class UserService {
+     constructor($http) {
+     this.http = $http;
+     }
 
-        getUsers(page, pageSize) {
-            return this.http.get(`api/users?page=${page}&pageSize=${pageSize}`)
-                .then(function (response) {
-                    return response.data;
-                })
-        }
+     getUsers(page, pageSize) {
+     return this.http.get(`api/users?page=${page}&pageSize=${pageSize}`)
+     .then(function (response) {
+     return response.data;
+     })
+     }
 
-        remove(id){
-            return this.http.delete(`api/users/${id}`)
-                .then(function (response) {
-                    return response.data;
-                });
-        }
-    }*/
+     remove(id){
+     return this.http.delete(`api/users/${id}`)
+     .then(function (response) {
+     return response.data;
+     });
+     }
+     }*/
 
     angular
         .module('myApp.services', [])
-        .service('userService', UserService);
+        .provider('userService', userService);
 
-    function UserService($http) {
-        this.getUsers = function (page, pageSize) {
-            return $http.get(`api/users?page=${page}&pageSize=${pageSize}`)
-                .then(function (response) {
-                    return response.data;
-                })
+    /*    function UserService($http) {
+     this.getUsers = function (page, pageSize) {
+     return $http.get(`api/users?page=${page}&pageSize=${pageSize}`)
+     .then(function (response) {
+     return response.data;
+     })
+     };
+
+     this.remove = function (id) {
+     return $http.delete(`api/users/${id}`)
+     .then(function (response) {
+     return response.data;
+     });
+     };
+     }*/
+
+    function userService() {
+
+        var logName;
+
+        this.init = function (logname) {
+            console.log(logname);
+            logName = logname;
         };
 
-        this.remove = function (id) {
-            return $http.delete(`api/users/${id}`)
-                .then(function (response) {
-                    return response.data;
-                });
+        this.$get = function ($log, $http) {
+            function getUsers(page, pageSize) {
+                $log.debug(`${logName} get users`);
+
+                return $http.get(`api/users?page=${page}&pageSize=${pageSize}`)
+                    .then(function (response) {
+                        return response.data;
+                    })
+            }
+
+            function remove(id) {
+                return $http.delete(`api/users/${id}`)
+                    .then(function (response) {
+                        return response.data;
+                    });
+            }
+
+            return {
+                getUsers: getUsers,
+                remove: remove
+            }
         };
+
     }
 
 })();
