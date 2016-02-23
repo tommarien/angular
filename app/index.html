@@ -10,23 +10,23 @@
 
 <div class="container">
 
-    <div ng-controller="AlertController">
-        <uib-alert ng-show="alert" type="{{alert.type}}" close="onCloseAlert()">{{alert.msg}}</uib-alert>
-        <button type="button" class='btn btn-default' ng-click="onAddAlert()">Add Alert</button>
-    </div>
+    <!--    <div ng-controller="AlertController">
+            <uib-alert ng-show="alert" type="{{alert.type}}" close="onCloseAlert()">{{alert.msg}}</uib-alert>
+            <button type="button" class='btn btn-default' ng-click="onAddAlert()">Add Alert</button>
+        </div>-->
 
-    <div ng-controller="UserListController">
+    <div ng-controller="UserListController as vm">
 
         <div class="row">
             <h1>User List</h1>
-            <button ng-click="onSwitchView()" class="btn btn-success">
-                {{(!gridView) ? 'Grid View' : 'List View'}}
+            <button ng-click="vm.onSwitchView()" class="btn btn-success">
+                {{(!vm.gridView) ? 'Grid View' : 'List View'}}
             </button>
             <br>
             <br>
         </div>
 
-        <div ng-if="!gridView" class="row">
+        <div ng-if="!vm.gridView" class="row">
             <table class="table-hover table-striped">
                 <thead>
                 <tr>
@@ -40,7 +40,7 @@
                 <tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="user in users">
+                <tr ng-repeat="user in vm.users">
                     {{user}}
                     <td><img class="rowImg" ng-src="{{user.image}}"></td>
                     <td>{{user.name}}</td>
@@ -48,17 +48,17 @@
                     <td>{{user.address}}</td>
                     <td>{{user.city}}</td>
                     <td>{{user.zip}}</td>
-                    <td><a href="" ng-click="onDelete(user)">Delete</a></td>
+                    <td><a href="" ng-click="vm.onDelete(user)">Delete</a></td>
                 <tr>
                 </tbody>
             </table>
-            <a src="" ng-click="onLoadMore()">Add More</a>
+            <a src="" ng-click="vm.onLoadMore()">Add More</a>
             <br>
         </div>
 
-        <div ng-if="gridView" class="row">
+        <div ng-if="vm.gridView" class="row">
 
-            <div ng-repeat="user in users" class="col-sm-6">
+            <div ng-repeat="user in vm.users" class="col-sm-6">
                 <div class="panel panel-primary">
                     <div class="panel-body">
                         <img class="gridImg" ng-src="{{user.image}}">
@@ -69,7 +69,7 @@
                     </div>
                 </div>
             </div>
-            <a src="" ng-click="onLoadMore()">Add More</a>
+            <a src="" ng-click="vm.onLoadMore()">Add More</a>
             <br>
 
         </div>

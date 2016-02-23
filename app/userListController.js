@@ -3,52 +3,54 @@
 
     angular
         .module('myApp.controllers', [])
-        .controller('UserListController', UserListController)
-        .controller('AlertController', AlertController);
+        .controller('UserListController', UserListController);
+    /*        .controller('AlertController', AlertController)*/
 
-    function AlertController($scope) {
-        $scope.alert = null;
+    /*  function AlertController($scope) {
+     $scope.alert = null;
 
-        $scope.onAddAlert = onAddAlert;
-        $scope.onCloseAlert = onCloseAlert;
+     $scope.onAddAlert = onAddAlert;
+     $scope.onCloseAlert = onCloseAlert;
 
-        function onAddAlert(){
-            $scope.alert = {
-                msg: "Boeh",
-                type: "warning"
-            }
-        }
+     function onAddAlert(){
+     $scope.alert = {
+     msg: "Boeh",
+     type: "warning"
+     }
+     }
 
-        function onCloseAlert(){
-            $scope.alert = null;
-        }
-    }
+     function onCloseAlert(){
+     $scope.alert = null;
+     }
+     }*/
 
-    function UserListController($scope, userService) {
+    function UserListController(userService) {
+        var vm = this;
+
         var page = 0;
         var pageSize = 10;
 
         // scope
-        $scope.gridView = false;
-        $scope.users = [];
+        vm.gridView = false;
+        vm.users = [];
 
-        $scope.onSwitchView = onSwitchView;
-        $scope.onLoadMore = onLoadMore;
-        $scope.onDelete = onDelete;
+        vm.onSwitchView = onSwitchView;
+        vm.onLoadMore = onLoadMore;
+        vm.onDelete = onDelete;
 
         initialize();
 
         function initialize() {
             return userService.getUsers(page, pageSize)
                 .then(function (users) {
-                    $scope.users = users;
+                    vm.users = users;
                 })
         }
 
         function onSwitchView() {
-            $scope.gridView = !$scope.gridView;
+            vm.gridView = !vm.gridView;
             page = 0;
-            pageSize = ($scope.gridView) ? 4 : 10;
+            pageSize = (vm.gridView) ? 4 : 10;
             initialize();
         }
 
@@ -57,7 +59,7 @@
             page++;
             return userService.getUsers(page, pageSize)
                 .then(function (users) {
-                    $scope.users = $scope.users.concat(users);
+                    vm.users = vm.users.concat(users);
                 })
         }
 
@@ -66,7 +68,7 @@
 
             userService.remove(user.id)
                 .then(function (resource) {
-                    $scope.users = $scope.users.filter(item => item !== user);
+                    vm.users = vm.users.filter(item => item !== user);
                 })
         }
     }
