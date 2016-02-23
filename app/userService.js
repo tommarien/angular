@@ -1,4 +1,4 @@
-(function() {
+(function () {
 
     angular
         .module('myApp')
@@ -8,13 +8,18 @@
 
         function getUsers(page, pageSize) {
             return $http.get(`api/users?page=${page}&pageSize=${pageSize}`)
-                        .then(function(response) {
-                            return response.data;
-                        })
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+
+        function deleteUser(id) {
+            return $http.delete(`api/users/${id}`);
         }
 
         return {
-            getUsers: getUsers
+            getUsers: getUsers,
+            deleteUser: deleteUser
         }
 
     }

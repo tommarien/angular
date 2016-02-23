@@ -14,6 +14,7 @@
 
         $scope.onSwitchView = onSwitchView;
         $scope.onLoadMore = onLoadMore;
+        $scope.onDelete = onDelete;
 
         initialize();
 
@@ -37,6 +38,15 @@
             return userService.getUsers(page, pageSize)
                 .then(function (users) {
                     $scope.users = $scope.users.concat(users);
+                })
+        }
+
+        function onDelete(user) {
+            console.log('delete', user);
+
+            userService.deleteUser(user.id)
+                .then(function () {
+                    $scope.users = $scope.users.filter(item => item !== user);
                 })
         }
     }
