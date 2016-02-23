@@ -33,6 +33,7 @@
         // scope
         vm.gridView = false;
         vm.users = [];
+        vm.message = 'Hello from controller';
 
         vm.onSwitchView = onSwitchView;
         vm.onLoadMore = onLoadMore;

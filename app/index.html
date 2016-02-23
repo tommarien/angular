@@ -15,7 +15,11 @@
             <button type="button" class='btn btn-default' ng-click="onAddAlert()">Add Alert</button>
         </div>-->
 
+
+
     <div ng-controller="UserListController as vm">
+
+        <my-component message="vm.message"></my-component>
 
         <div class="row">
             <h1>User List</h1>
@@ -82,5 +86,6 @@
 <script src="app.js"></script>
 <script src="userListController.js"></script>
 <script src="userService.js"></script>
+<script src="myComponent.js"></script>
 </body>
 </html>
