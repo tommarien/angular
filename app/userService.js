@@ -13,13 +13,13 @@
                 })
         }
 
-        function deleteUser(id) {
+        function remove(id) {
             return $http.delete(`api/users/${id}`);
         }
 
         return {
             getUsers: getUsers,
-            deleteUser: deleteUser
+            remove: remove
         }
 
     }

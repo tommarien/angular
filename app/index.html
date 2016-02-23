@@ -8,73 +8,73 @@
 </head>
 <body ng-app="myApp" ng-cloak>
 
-    <div class="container">
-        <div ng-controller="UserListController">
+<div class="container">
+    <div ng-controller="UserListController">
 
-            <div class="row">
-                <h1>User List</h1>
-                <button ng-click="onSwitchView()" class="btn btn-success">
-                    {{(!gridView) ? 'Grid View' : 'List View'}}
-                </button>
-                <br>
-                <br>
-            </div>
+        <div class="row">
+            <h1>User List</h1>
+            <button ng-click="onSwitchView()" class="btn btn-success">
+                {{(!gridView) ? 'Grid View' : 'List View'}}
+            </button>
+            <br>
+            <br>
+        </div>
 
-            <div ng-if="!gridView" class="row">
-                <table class="table-hover table-striped">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Address</th>
-                            <th>City</th>
-                            <th>Zip</th>
-                            <th></th>
-                        <tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="user in users">
-                            {{user}}
-                            <td><img class="rowImg" ng-src="{{user.image}}"></td>
-                            <td>{{user.name}}</td>
-                            <td>{{user.email}}</td>
-                            <td>{{user.address}}</td>
-                            <td>{{user.city}}</td>
-                            <td>{{user.zip}}</td>
-                            <td><a ng-click="onDelete(user)">Delete</a></td>
-                        <tr>
-                    </tbody>
-                </table>
-                <a src="" ng-click="onLoadMore()">Add More</a>
-                <br>
-            </div>
+        <div ng-if="!gridView" class="row">
+            <table class="table-hover table-striped">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Zip</th>
+                    <th></th>
+                <tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="user in users">
+                    {{user}}
+                    <td><img class="rowImg" ng-src="{{user.image}}"></td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.address}}</td>
+                    <td>{{user.city}}</td>
+                    <td>{{user.zip}}</td>
+                    <td><a href="" ng-click="onDelete(user)">Delete</a></td>
+                <tr>
+                </tbody>
+            </table>
+            <a src="" ng-click="onLoadMore()">Add More</a>
+            <br>
+        </div>
 
-            <div ng-if="gridView" class="row">
+        <div ng-if="gridView" class="row">
 
-                <div ng-repeat="user in users" class="col-sm-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-body">
-                            <img class="gridImg" ng-src="{{user.image}}">
-                            <h2>{{user.name}}</h2>
-                            <p>Age: {{user.age}}</p>
-                            <p>Email: {{user.email}}</p>
-                            <p>Address: {{user.address}} - {{user.zip}} {{user.city}}</p>
-                        </div>
+            <div ng-repeat="user in users" class="col-sm-6">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <img class="gridImg" ng-src="{{user.image}}">
+                        <h2>{{user.name}}</h2>
+                        <p>Age: {{user.age}}</p>
+                        <p>Email: {{user.email}}</p>
+                        <p>Address: {{user.address}} - {{user.zip}} {{user.city}}</p>
                     </div>
                 </div>
-                <a src="" ng-click="onLoadMore()">Add More</a>
-                <br>
-
             </div>
+            <a src="" ng-click="onLoadMore()">Add More</a>
+            <br>
+
         </div>
     </div>
+</div>
 
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="app.js"></script>
-    <script src="userListController.js"></script>
-    <script src="userService.js"></script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="app.js"></script>
+<script src="userListController.js"></script>
+<script src="userService.js"></script>
 </body>
 </html>
