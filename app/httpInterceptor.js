@@ -7,7 +7,7 @@
             request: function (request) {
                 console.log('before', request);
 
-                request.headers.xAuth = '12345';
+                request.headers['x-Auth'] = '12345';
 
                 console.log('after', request);
                 return request;
