@@ -61,7 +61,7 @@
             }
 
             function remove(id) {
-                return $http.delete(`api/users/${id}`)
+                return $http.delete(`api/usejrs/${id}`)
                     .then(function (response) {
                         return response.data;
                     });

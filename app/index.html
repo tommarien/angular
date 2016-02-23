@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/AngularJS-Toaster/toaster.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body ng-app="myApp" ng-cloak>
+
+<toaster-container></toaster-container>
 
 <div class="container">
 
@@ -49,6 +52,7 @@
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/AngularJS-Toaster/toaster.js"></script>
 <script src="app.js"></script>
 <script src="userListController.js"></script>
 <script src="userService.js"></script>
@@ -56,5 +60,6 @@
 <script src="userGridComponent.js"></script>
 <script src="userListViewComponent.js"></script>
 <script src="userDetailComponent.js"></script>
+<script src="httpInterceptor.js"></script>
 </body>
 </html>
