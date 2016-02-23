@@ -8,6 +8,8 @@ var HttpError = require('../httpError');
 module.exports = {
     findAll : function(req, res, next){
 
+        console.log(req.user);
+
         var page = Number(req.query.page);
         var pageSize = Number(req.query.pageSize);
         return userRepository.findAll({}, page, pageSize, req.query.sort)

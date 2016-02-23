@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var validator = require('../middleware/requestValidator');
+var authorizer = require('../middleware/authorizer');
 var userController = require('../controllers/usercontroller');
 
 var userSchema = {
@@ -22,12 +23,12 @@ router.get('/', userController.findAll);
 router.get('/:id', userController.findOne);
 
 // PUT /api/users/123
-router.put('/:id', validator(userSchema), userController.update);
+router.put('/:id', authorizer, validator(userSchema), userController.update);
 
 // POST /api/users
-router.post('/', validator(userSchema), userController.create);
+router.post('/', authorizer, validator(userSchema), userController.create);
 
 // DELETE /api/users/12213
-router.delete('/:id', userController.delete);
+router.delete('/:id', authorizer, userController.delete);
 
 module.exports = router;

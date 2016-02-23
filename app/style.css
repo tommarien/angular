@@ -1,0 +1,13 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+.rowImg {
+    height: 40px;
+    width: auto;
+    margin: 5px
+}
+
+.gridImg {
+    width: 100%
+}

@@ -1,132 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>My User application</title>
-
-    <!-- Bootstrap -->
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <style>
-        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak,
-        .x-ng-cloak {
-            display: none !important;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body ng-app="myApp" ng-cloak>
-<!-- Static navbar -->
-<nav class="navbar navbar-default navbar-static-top">
+
     <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">My User Application</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <!-- <li><a href="#about">About</a></li>
-                 <li><a href="#contact">Contact</a></li>
-                 <li class="dropdown">
-                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                     <ul class="dropdown-menu">
-                         <li><a href="#">Action</a></li>
-                         <li><a href="#">Another action</a></li>
-                         <li><a href="#">Something else here</a></li>
-                         <li role="separator" class="divider"></li>
-                         <li class="dropdown-header">Nav header</li>
-                         <li><a href="#">Separated link</a></li>
-                         <li><a href="#">One more separated link</a></li>
-                     </ul>
-                 </li>-->
-            </ul>
+        <div ng-controller="UserListController">
 
-        </div><!--/.nav-collapse -->
-    </div>
-</nav>
+            <div class="row">
+                <h1>User List</h1>
+                <button ng-click="onSwitchView()" class="btn btn-success">
+                    {{(!gridView) ? 'Grid View' : 'List View'}}
+                </button>
+                <br>
+                <br>
+            </div>
 
+            <div ng-if="!gridView" class="row">
+                <table class="table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th>City</th>
+                            <th>Zip</th>
+                            <th></th>
+                        <tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="user in users">
+                            {{user}}
+                            <td><img class="rowImg" ng-src="{{user.image}}"></td>
+                            <td>{{user.name}}</th>
+                            <td>{{user.email}}</th>
+                            <td>{{user.address}}</th>
+                            <td>{{user.city}}</th>
+                            <td>{{user.zip}}</th>
+                        <tr>
+                    </tbody>
+                </table>
+                <a src="" ng-click="onLoadMore()">Add More</a>
+                <br>
+            </div>
 
-<div class="container" ng-controller="UserController">
-    <h1>
-        My Users
-        <button type="button" class="btn btn-primary pull-right" ng-click="switchListMode()">Switch</button>
-    </h1>
+            <div ng-if="gridView" class="row">
 
-    <div id="users" ng-switch="viewMode">
-        <div ng-switch-when="detail">
-            <div class="row" infinite-scroll="showMore()" infinite-scroll-distance="1" infinite-scroll-disabled="scrollDisabled">
-                <div class="col-sm-6" ng-repeat="user in users" >
-                    <div class="panel panel-default">
-
+                <div ng-repeat="user in users" class="col-sm-6">
+                    <div class="panel panel-primary">
                         <div class="panel-body">
-                            <div class="col-sm-4">
-                                <img ng-src="{{user.image}}" class="img-thumbnail"/>
-                            </div>
-                            <div class="col-sm-8">
-                                <address>
-                                    <strong>{{user.name}}</strong><br>
-                                    <a ng-href="mailto:{{user.email}}">{{user.email}}</a><br>
-                                    Age: {{user.age}}
-                                </address>
-
-                                <address>
-                                    {{user.address}}<br>
-                                    {{user.city}}, {{user.zip}}<br>
-                                </address>
-                            </div>
+                            <img class="gridImg" ng-src="{{user.image}}">
+                            <h2>{{user.name}}</h2>
+                            <p>Age: {{user.age}}</p>
+                            <p>Email: {{user.email}}</p>
+                            <p>Address: {{user.address}} - {{user.zip}} {{user.city}}</p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+                <a src="" ng-click="onLoadMore()">Add More</a>
+                <br>
 
-        <div ng-switch-default>
-            <table class="table table-striped" infinite-scroll="showMore()" infinite-scroll-distance="1" infinite-scroll-disabled="scrollDisabled">
-                <thead>
-                <tr>
-                    <td></td>
-                    <td>Name</td>
-                    <td class="text-center">Age</td>
-                    <td>Email</td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="user in users">
-                    <td class="col-sm-1"><img width="40" height="40" ng-src="{{user.image}}"></td>
-                    <td>{{user.name}}</td>
-                    <td class="col-sm-1 text-center">{{user.age}}</td>
-                    <td class="col-sm-4"><a ng-href="mailto:{{user.email}}">{{user.email}}</a></td>
-                </tr>
-                </tbody>
-            </table>
+            </div>
         </div>
     </div>
 
-</div> <!-- /container -->
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="bower_components/angular/angular.js"></script>
-<script src='bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js'></script>
-<script src="app.js"></script>
-<script src="userService.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="app.js"></script>
+    <script src="userListController.js"></script>
+    <script src="userService.js"></script>
 </body>
 </html>

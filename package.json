@@ -3,22 +3,25 @@
   "version": "1.0.0",
   "description": "",
   "dependencies": {
+    "base-64": "^0.1.0",
     "body-parser": "^1.14.1",
     "boom": "^2.9.0",
     "cors": "^2.7.1",
     "express": "^4.13.3",
-    "faker": "^3.0.1",
     "http-status": "^0.2.0",
+    "jwt-simple": "^0.4.1",
     "mongoose": "^4.1.10",
     "morgan": "^1.6.1",
     "q": "^1.4.1",
     "schema-inspector": "^1.5.5",
+    "secure-random-string": "^1.0.0",
+    "sha256": "^0.2.0",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "Faker": "^0.7.2"
   },
-  "scripts": {
-  },
+  "scripts": {},
   "author": "",
   "license": "ISC"
 }

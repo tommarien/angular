@@ -1,8 +1,9 @@
 var express = require('express');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
-var userApi = require('./routes/users');
-var authorize = require('./middleware/authorize');
+var userApi = require('./routes/usersRoute');
+var authApi = require('./routes/authRoute');
+var authenticator = require('./middleware/authenticator');
 var globalErrorHandler = require('./middleware/globalErrorHandler');
 var cors = require('cors');
 var mongoose = require('mongoose');
@@ -19,6 +20,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use(express.static('app'));
+app.use(authenticator);
 
 //setup db
 mongoose.connect('mongodb://localhost/demo');
@@ -34,6 +36,7 @@ User.findOne(null, function(err, user){
 
 // routes
 app.use('/api/users', userApi);
+app.use('/api/auth', authApi);
 
 // middleware - error handlers
 app.use(globalErrorHandler());

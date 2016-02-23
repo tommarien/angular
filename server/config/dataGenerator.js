@@ -5,16 +5,28 @@ module.exports = {
     fillDb: function fillDb(){
         var data = [];
         for(var i = 0; i < 100; i++) {
+
+            var firstName, imageUrl;
+            var random = faker.Helpers.randomNumber(2);
+            console.log(random);
+            if (random === 1) {
+                firstName = faker.Name.firstNameFemale();
+                imageUrl = `http://api.randomuser.me/portraits/women/${faker.Helpers.randomNumber(100)}.jpg`;
+            }
+            else {
+                firstName = faker.Name.firstNameMale();
+                imageUrl = `http://api.randomuser.me/portraits/men/${faker.Helpers.randomNumber(100)}.jpg`;
+            }
             data.push({
-                firstName: faker.name.firstName(),
-                lastName: faker.name.lastName(),
-                age: faker.random.number(100),
-                email: faker.internet.email(),
-                image: `http://api.randomuser.me/portraits/men/${faker.random.number(100)}.jpg`,
+                firstName: firstName,
+                lastName: faker.Name.lastName(),
+                age: faker.Helpers.randomNumber(100),
+                email: faker.Internet.email(),
+                image: imageUrl,
                 homeAddress: {
-                    addressLine: faker.address.streetAddress(),
-                    city: faker.address.city(),
-                    zip: faker.address.zipCode()
+                    addressLine: faker.Address.streetAddress(),
+                    city: faker.Address.city(),
+                    zip: faker.Address.zipCode()
                 }
             });
         }
