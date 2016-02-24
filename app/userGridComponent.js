@@ -20,11 +20,11 @@
                 <tr ng-repeat="user in $ctrl.data | sort:'name'"> <!--| orderBy : 'name'-->
                     {{user}}
                     <td><img class="rowImg" ng-src="{{user.image}}"></td>
-                    <td>{{user.name}}</td>
-                    <td>{{user.email}}</td>
-                    <td>{{user.address}}</td>
-                    <td>{{user.city}}</td>
-                    <td>{{user.zip}}</td>
+                    <td>{{::user.name}}</td> <!-- :: unsubscribes watches ofter 1 bind -->
+                    <td>{{::user.email}}</td>
+                    <td>{{::user.address}}</td>
+                    <td>{{::user.city}}</td>
+                    <td>{{::user.zip}}</td>
                     <td>
                     <a href="" ng-click="$ctrl.onDelete(user)">Delete</a>
                     <a ui-sref="view2({id:user.id})">Edit</a>
