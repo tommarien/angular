@@ -5,12 +5,18 @@
         .module('myApp.controllers')
         .controller('UserEditController', UserEditController);
 
-    function UserEditController(userService, $stateParams, $state) {
+    function UserEditController($scope, userService, $stateParams, $state) {
         var vm = this;
         var id = $stateParams.id;
 
         vm.user = {};
         vm.message = 'User edit mode';
+
+        // Watch something manual prevent if possible
+        $scope.$watch('vm.user.name', function (newValue, oldValue) {
+            if (newValue === oldValue) return;
+            console.log(oldValue, newValue);
+        });
 
         vm.Save = Save;
 
