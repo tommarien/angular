@@ -35,7 +35,12 @@
             $rootScope.$on('$stateChangeStart',
                 function (event, toState, toParams, fromState, fromParams, options) {
                     $log.info('State Changed from:', fromState, 'to:', toState);
-                })
+                });
+
+            $rootScope.$on('$stateChangeError',
+                function (event, toState, toParams, fromState, fromParams, error) {
+                    $log.error('State Error from:', fromState, 'to:', toState);
+                });
 
         });
 
