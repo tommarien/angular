@@ -30,6 +30,13 @@
         })
         .config(function (userServiceProvider) {
             userServiceProvider.init('My logname');
+        })
+        .run(function ($rootScope, $log) {
+            $rootScope.$on('$stateChangeStart',
+                function (event, toState, toParams, fromState, fromParams, options) {
+                    $log.info('State Changed from:', fromState, 'to:', toState);
+                })
+
         });
 
 })();

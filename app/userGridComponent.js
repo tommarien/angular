@@ -43,8 +43,6 @@
                 ctrl.onDelete = onDelete;
 
                 function onDelete(user) {
-                    console.log('UserGrid: delete', user);
-
                     ctrl.onRemove({user: user});
                 }
             }

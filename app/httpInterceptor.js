@@ -5,11 +5,7 @@
     function httpInterceptor($q, toaster) {
         return {
             request: function (request) {
-                console.log('before', request);
-
                 request.headers['x-Auth'] = '12345';
-
-                console.log('after', request);
                 return request;
             },
             responseError: function (response) {

@@ -74,8 +74,6 @@
         }
 
         function onDelete(user) {
-            console.log('delete', user);
-
             userService.remove(user.id)
                 .then(function (resource) {
                     vm.users = vm.users.filter(item => item !== user);
