@@ -24,6 +24,8 @@
                     <h2>Subbie</h2>
                 </my-component>-->
 
+        Filter: {{ vm.message | upper }}
+
         <div class="row">
             <h1>User List</h1>
             <button ng-click="vm.onSwitchView()" class="btn btn-success">
@@ -61,5 +63,6 @@
 <script src="userListViewComponent.js"></script>
 <script src="userDetailComponent.js"></script>
 <script src="httpInterceptor.js"></script>
+<script src="filters/upperFilter.js"></script>
 </body>
 </html>
