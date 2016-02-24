@@ -5,8 +5,8 @@
         .module('myApp.controllers')
         .controller('UserEditController', UserEditController);
 
-    UserEditController.$inject = ['$scope', 'userService', '$stateParams', '$state'];
-    function UserEditController($scope, userService, $stateParams, $state) {
+    UserEditController.$inject = ['$scope', '$stateParams', '$state', 'UserModel'];
+    function UserEditController($scope, $stateParams, $state, UserModel) {
         var vm = this;
         var id = $stateParams.id;
 
@@ -25,28 +25,23 @@
 
         function initialize() {
             if (id) {
-                userService.getUser(id)
+                UserModel.get(id)
                     .then(function (user) {
                         vm.user = user;
-                    })
+                    });
+                return;
             }
+
+            vm.user = new UserModel();
         }
 
         function Save(valid) {
             if (!valid) return;
 
-            if (id) {
-                userService.put(vm.user)
-                    .then(function (user) {
-                        vm.user = user;
-                    });
-            }
-            else {
-                userService.post(vm.user)
-                    .then(function (user) {
-                        $state.go('view2', {id: user.id});
-                    });
-            }
+            vm.user.$save()
+                .then(function (user) {
+                    $state.go('view2', {id: user.id});
+                });
         }
     }
 

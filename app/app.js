@@ -7,8 +7,8 @@
             'toaster',
             'ui.router',
             'ngMessages',
-            'myApp.controllers',
-            'myApp.services'
+            'modelFactory',
+            'myApp.controllers'
         ])
         .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise('view1');
@@ -18,11 +18,11 @@
                     url: '/view1',
                     templateUrl: 'views/main.html',
                     controller: 'UserListController as vm',
-                    resolve: {
+                    /*resolve: {
                         users: function (userService) {
                             return userService.getUsers(0, 10);
                         }
-                    }
+                    }*/
                 })
                 .state('view2', {
                     url: '/view2/:id?',
@@ -33,9 +33,6 @@
         }])
         .config(['$httpProvider', function ($httpProvider) {
             $httpProvider.interceptors.push('httpInterceptor');
-        }])
-        .config(['userServiceProvider', function (userServiceProvider) {
-            userServiceProvider.init('My logname');
         }])
         .run(['$rootScope', '$log', function ($rootScope, $log) {
             $rootScope.$on('$stateChangeStart',

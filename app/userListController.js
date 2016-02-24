@@ -24,8 +24,8 @@
      }
      }*/
 
-    UserListController.$inject = ['userService', '$filter', 'users'];
-    function UserListController(userService, $filter, users) {
+    UserListController.$inject = ['$filter', 'UserModel'];
+    function UserListController($filter, UserModel) {
         var vm = this;
 
         var page = 0;
@@ -33,7 +33,7 @@
 
         // scope
         vm.gridView = false;
-        vm.users = users;
+        vm.users;
         vm.message = '<b>Hello from controller</b>';
 
         vm.onSwitchView = onSwitchView;
@@ -45,17 +45,17 @@
 
         function initialize() {
 
-            /*  // Get filter in controller/component
-             var upperFilter = $filter('upper');
+            // Get filter in controller/component
+            var upperFilter = $filter('upper');
 
-             var sortFilter = $filter('sort');
+            var sortFilter = $filter('sort');
 
-             vm.message = upperFilter('Hello World');
+            vm.message = upperFilter('Hello World');
 
-             return userService.getUsers(page, pageSize)
-             .then(function (users) {
-             vm.users = users;
-             })*/
+            return UserModel.queryPaged(page, pageSize)
+                .then(function (users) {
+                    vm.users = users;
+                })
         }
 
         function onSwitchView() {
@@ -68,17 +68,15 @@
         function onLoadMore() {
             console.log('loadMode');
             page++;
-            return userService.getUsers(page, pageSize)
+
+            return UserModel.queryPaged(page, pageSize)
                 .then(function (users) {
                     vm.users = vm.users.concat(users);
                 })
         }
 
         function onDelete(user) {
-            userService.remove(user.id)
-                .then(function (resource) {
-                    vm.users = vm.users.filter(item => item !== user);
-                })
+            user.$destroy();
         }
 
         function onNotify() {
