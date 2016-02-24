@@ -60,8 +60,22 @@
                     })
             }
 
-            function getUser(id){
+            function getUser(id) {
                 return $http.get(`api/users/${id}`)
+                    .then(function (response) {
+                        return response.data;
+                    })
+            }
+
+            function put(user) {
+                return $http.put(`api/users/${user.id}`, user)
+                    .then(function (response) {
+                        return response.data;
+                    })
+            }
+
+            function post(user) {
+                return $http.post(`api/users`, user)
                     .then(function (response) {
                         return response.data;
                     })
@@ -76,8 +90,10 @@
 
             return {
                 getUsers: getUsers,
-                getUser:getUser,
-                remove: remove
+                getUser: getUser,
+                remove: remove,
+                post: post,
+                put: put
             }
         };
 

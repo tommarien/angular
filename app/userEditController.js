@@ -5,8 +5,9 @@
         .module('myApp.controllers')
         .controller('UserEditController', UserEditController);
 
-    function UserEditController(userService, $stateParams) {
+    function UserEditController(userService, $stateParams, $state) {
         var vm = this;
+        var id = $stateParams.id;
 
         vm.user = {};
         vm.message = 'User edit mode';
@@ -16,7 +17,6 @@
         initialize();
 
         function initialize() {
-            var id = $stateParams.id;
             if (id) {
                 userService.getUser(id)
                     .then(function (user) {
@@ -25,10 +25,21 @@
             }
         }
 
-        function Save(valid){
+        function Save(valid) {
             if (!valid) return;
 
-            console.log('submitted');
+            if (id) {
+                userService.put(_.extend({id: id}, vm.user))
+                    .then(function (user) {
+                        vm.user = user;
+                    });
+            }
+            else {
+                userService.post(vm.user)
+                    .then(function (user) {
+                        $state.go('view2', {id: user.id});
+                    });
+            }
         }
     }
 
