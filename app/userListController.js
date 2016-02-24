@@ -24,7 +24,7 @@
      }
      }*/
 
-    function UserListController(userService, $filter) {
+    function UserListController(userService, $filter, users) {
         var vm = this;
 
         var page = 0;
@@ -32,7 +32,7 @@
 
         // scope
         vm.gridView = false;
-        vm.users = [];
+        vm.users = users;
         vm.message = 'Hello from controller';
 
         vm.onSwitchView = onSwitchView;
@@ -44,7 +44,7 @@
 
         function initialize() {
 
-            // Get filter in controller/component
+          /*  // Get filter in controller/component
             var upperFilter = $filter('upper');
 
             var sortFilter = $filter('sort');
@@ -54,7 +54,7 @@
             return userService.getUsers(page, pageSize)
                 .then(function (users) {
                     vm.users = users;
-                })
+                })*/
         }
 
         function onSwitchView() {

@@ -16,7 +16,12 @@
                 .state('view1', {
                     url: '/view1',
                     templateUrl: 'views/main.html',
-                    controller: 'UserListController as vm'
+                    controller: 'UserListController as vm',
+                    resolve: {
+                        users: function(userService){
+                            return userService.getUsers(0,10);
+                        }
+                    }
                 })
                 .state('view2', {
                     url: '/view2/:id?',
