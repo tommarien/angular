@@ -24,7 +24,7 @@
      }
      }*/
 
-    function UserListController(userService) {
+    function UserListController(userService, $filter) {
         var vm = this;
 
         var page = 0;
@@ -43,6 +43,12 @@
         initialize();
 
         function initialize() {
+
+            // Get filter in controller/component
+            var upperFilter = $filter('upper');
+
+            vm.message = upperFilter('Hello World');
+
             return userService.getUsers(page, pageSize)
                 .then(function (users) {
                     vm.users = users;

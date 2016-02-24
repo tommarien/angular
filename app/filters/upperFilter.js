@@ -2,7 +2,7 @@
 
     angular.module('myApp')
         .filter('upper', function () {
-            return function (value) {
+            return function (value, arg) {
                 return !value ? value : value.toUpperCase();
             };
         });
