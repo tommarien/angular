@@ -15,11 +15,11 @@
 
         function initialize() {
             var id = $stateParams.id;
-            if (id){
-            userService.getUser(id)
-                .then(function (user) {
-                    vm.user = user;
-                })
+            if (id) {
+                userService.getUser(id)
+                    .then(function (user) {
+                        vm.user = user;
+                    })
             }
         }
     }
