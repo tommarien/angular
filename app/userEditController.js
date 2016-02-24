@@ -29,7 +29,7 @@
             if (!valid) return;
 
             if (id) {
-                userService.put(_.extend({id: id}, vm.user))
+                userService.put(vm.user)
                     .then(function (user) {
                         vm.user = user;
                     });
