@@ -47,11 +47,13 @@
             // Get filter in controller/component
             var upperFilter = $filter('upper');
 
+            var orderByFilter = $filter('orderBy');
+
             vm.message = upperFilter('Hello World');
 
             return userService.getUsers(page, pageSize)
                 .then(function (users) {
-                    vm.users = users;
+                    vm.users = orderByFilter(users, 'name');
                 })
         }
 
