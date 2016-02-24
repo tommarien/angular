@@ -2,6 +2,7 @@
     angular.module('myApp')
         .factory('httpInterceptor', httpInterceptor);
 
+    httpInterceptor.$inject = ['$q', 'toaster'];
     function httpInterceptor($q, toaster) {
         return {
             request: function (request) {

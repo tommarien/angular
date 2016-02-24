@@ -5,6 +5,7 @@
         .module('myApp.controllers')
         .controller('UserEditController', UserEditController);
 
+    UserEditController.$inject = ['$scope', 'userService', '$stateParams', '$state'];
     function UserEditController($scope, userService, $stateParams, $state) {
         var vm = this;
         var id = $stateParams.id;

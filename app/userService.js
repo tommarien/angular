@@ -50,7 +50,7 @@
             logName = logname;
         };
 
-        this.$get = function ($log, $http) {
+        this.$get = ['$log', '$http', function ($log, $http) {
             function getUsers(page, pageSize) {
                 $log.debug(`${logName} get users`);
 
@@ -95,7 +95,7 @@
                 post: post,
                 put: put
             }
-        };
+        }];
 
     }
 

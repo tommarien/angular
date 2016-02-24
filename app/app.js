@@ -10,7 +10,7 @@
             'myApp.controllers',
             'myApp.services'
         ])
-        .config(function ($stateProvider, $urlRouterProvider) {
+        .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise('view1');
 
             $stateProvider
@@ -30,14 +30,14 @@
                     controller: 'UserEditController as vm'
                 });
 
-        })
-        .config(function ($httpProvider) {
+        }])
+        .config(['$httpProvider', function ($httpProvider) {
             $httpProvider.interceptors.push('httpInterceptor');
-        })
-        .config(function (userServiceProvider) {
+        }])
+        .config(['userServiceProvider', function (userServiceProvider) {
             userServiceProvider.init('My logname');
-        })
-        .run(function ($rootScope, $log) {
+        }])
+        .run(['$rootScope', '$log', function ($rootScope, $log) {
             $rootScope.$on('$stateChangeStart',
                 function (event, toState, toParams, fromState, fromParams, options) {
                     $log.info('State Changed from:', fromState, 'to:', toState);
@@ -48,6 +48,5 @@
                     $log.error('State Error from:', fromState, 'to:', toState);
                 });
 
-        });
-
+        }]);
 })();

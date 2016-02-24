@@ -24,6 +24,7 @@
      }
      }*/
 
+    UserListController.$inject = ['userService', '$filter', 'users'];
     function UserListController(userService, $filter, users) {
         var vm = this;
 
@@ -33,7 +34,7 @@
         // scope
         vm.gridView = false;
         vm.users = users;
-        vm.message = 'Hello from controller';
+        vm.message = '<b>Hello from controller</b>';
 
         vm.onSwitchView = onSwitchView;
         vm.onLoadMore = onLoadMore;
@@ -44,17 +45,17 @@
 
         function initialize() {
 
-          /*  // Get filter in controller/component
-            var upperFilter = $filter('upper');
+            /*  // Get filter in controller/component
+             var upperFilter = $filter('upper');
 
-            var sortFilter = $filter('sort');
+             var sortFilter = $filter('sort');
 
-            vm.message = upperFilter('Hello World');
+             vm.message = upperFilter('Hello World');
 
-            return userService.getUsers(page, pageSize)
-                .then(function (users) {
-                    vm.users = users;
-                })*/
+             return userService.getUsers(page, pageSize)
+             .then(function (users) {
+             vm.users = users;
+             })*/
         }
 
         function onSwitchView() {
@@ -80,7 +81,7 @@
                 })
         }
 
-        function onNotify(){
+        function onNotify() {
             console.log('onNotify');
         }
     }
