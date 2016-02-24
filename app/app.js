@@ -6,6 +6,7 @@
             'ui.bootstrap',
             'toaster',
             'ui.router',
+            'ngMessages',
             'myApp.controllers',
             'myApp.services'
         ])
@@ -18,8 +19,8 @@
                     templateUrl: 'views/main.html',
                     controller: 'UserListController as vm',
                     resolve: {
-                        users: function(userService){
-                            return userService.getUsers(0,10);
+                        users: function (userService) {
+                            return userService.getUsers(0, 10);
                         }
                     }
                 })

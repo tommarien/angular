@@ -1,9 +1,36 @@
-<h1>View2</h1>
+<h1>Edit</h1>
 
 <h2>{{vm.message}}</h2>
 
+<form name="userEditForm" ng-submit="vm.Save(userEditForm.$valid)" novalidate>
+    name: <input name="name"
+                 type="text"
+                 ng-model="name"
+                 required
+                 ng-minlength="3" >
+    <!--div ng-if="userEditForm.name.$invalid" class="text-danger">
+        The field is invalid
+    </div>-->
+
+    <div ng-messages="userEditForm.name.$error" class="text-danger" ng-if="userEditForm.name.$dirty || userEditForm.$submitted">
+        <div ng-message="required">The field is required</div>
+        <div ng-message="minlength">The field is too short</div>
+
+    </div>
+
+    <br>
+    age: <input name="age"
+                type="number"
+                ng-model="age"
+                required>
+    <br><br>
+    <button type="submit">Save</button>
+</form>
+
+<br>
+
 <pre>
     <code>
-        {{ vm.user | json }}
+        {{ userEditForm | json }}
     </code>
 </pre>

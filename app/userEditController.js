@@ -11,6 +11,8 @@
         vm.user = {};
         vm.message = 'User edit mode';
 
+        vm.Save = Save;
+
         initialize();
 
         function initialize() {
@@ -21,6 +23,12 @@
                         vm.user = user;
                     })
             }
+        }
+
+        function Save(valid){
+            if (!valid) return;
+
+            console.log('submitted');
         }
     }
 
