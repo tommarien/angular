@@ -13,9 +13,8 @@
     </div>-->
 
     <div ng-messages="userEditForm.name.$error" class="text-danger" ng-if="userEditForm.name.$dirty || userEditForm.$submitted">
-        <div ng-message="required">The field is required</div>
-        <div ng-message="minlength">The field is too short</div>
-
+        <div ng-message="required">The name is required</div>
+        <div ng-messages-include="messages.html"></div>
     </div>
 
     <br>
@@ -23,6 +22,11 @@
                 type="number"
                 ng-model="age"
                 required>
+
+    <div ng-messages="userEditForm.age.$error" class="text-danger" ng-if="userEditForm.age.$dirty || userEditForm.$submitted">
+        <div ng-messages-include="messages.html"></div>
+
+    </div>
     <br><br>
     <button type="submit">Save</button>
 </form>
