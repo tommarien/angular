@@ -18,37 +18,13 @@
             <button type="button" class='btn btn-default' ng-click="onAddAlert()">Add Alert</button>
         </div>-->
 
-    <div ng-controller="UserListController as vm">
+    <!-- <ng-include src="'main.html'" ></ng-include>-->
 
-        <!--        <my-component message="vm.message" notify="vm.onNotify()">
-                    <h2>Subbie</h2>
-                </my-component>-->
+    <a href="/">Home</a>
+    <a href="#/view1">View1</a>
+    <a href="#/view2">View2</a>
 
-        Filter: {{ vm.message }}
-
-        <div class="row">
-            <h1>User List</h1>
-            <button ng-click="vm.onSwitchView()" class="btn btn-success">
-                {{(!vm.gridView) ? 'Grid View' : 'List View'}}
-            </button>
-            <br>
-            <br>
-        </div>
-
-        <div ng-if="!vm.gridView" class="row">
-            <user-grid-component data="vm.users" on-remove="vm.onDelete(user)"></user-grid-component>
-            <a src="" ng-click="vm.onLoadMore()">Add More</a>
-            <br>
-        </div>
-
-        <div ng-if="vm.gridView" class="row">
-
-            <user-list-view-component data="vm.users"></user-list-view-component>
-            <a src="" ng-click="vm.onLoadMore()">Add More</a>
-            <br>
-
-        </div>
-    </div>
+    <div ng-view></div>
 </div>
 
 <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -56,6 +32,7 @@
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="bower_components/AngularJS-Toaster/toaster.js"></script>
 <script src="bower_components/underscore/underscore.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
 <script src="app.js"></script>
 <script src="userListController.js"></script>
 <script src="userService.js"></script>
