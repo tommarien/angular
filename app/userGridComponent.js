@@ -25,7 +25,10 @@
                     <td>{{user.address}}</td>
                     <td>{{user.city}}</td>
                     <td>{{user.zip}}</td>
-                    <td><a href="" ng-click="$ctrl.onDelete(user)">Delete</a></td>
+                    <td>
+                    <a href="" ng-click="$ctrl.onDelete(user)">Delete</a>
+                    <a ui-sref="view2({id:user.id})">Edit</a>
+                    </td>
                 <tr>
                 </tbody>
             </table>

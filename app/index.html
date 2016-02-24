@@ -21,10 +21,10 @@
     <!-- <ng-include src="'main.html'" ></ng-include>-->
 
     <a href="/">Home</a>
-    <a href="#/view1">View1</a>
-    <a href="#/view2">View2</a>
+    <a ui-sref="view1">View1</a>
+    <a ui-sref="view2">View2</a>
 
-    <div ng-view></div>
+    <div ui-view></div>
 </div>
 
 <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -32,9 +32,10 @@
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="bower_components/AngularJS-Toaster/toaster.js"></script>
 <script src="bower_components/underscore/underscore.js"></script>
-<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="app.js"></script>
 <script src="userListController.js"></script>
+<script src="userEditController.js"></script>
 <script src="userService.js"></script>
 <script src="myComponent.js"></script>
 <script src="userGridComponent.js"></script>

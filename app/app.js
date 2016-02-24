@@ -5,21 +5,23 @@
         .module('myApp', [
             'ui.bootstrap',
             'toaster',
-            'ngRoute',
+            'ui.router',
             'myApp.controllers',
             'myApp.services'
         ])
-        .config(function ($routeProvider) {
-            $routeProvider
-                .when('/view1', {
+        .config(function ($stateProvider, $urlRouterProvider) {
+            $urlRouterProvider.otherwise('view1');
+
+            $stateProvider
+                .state('view1', {
+                    url: '/view1',
                     templateUrl: 'views/main.html',
                     controller: 'UserListController as vm'
                 })
-                .when('/view2', {
-                    templateUrl: 'views/view2.html'
-                })
-                .otherwise({
-                    redirectTo: '/view1'
+                .state('view2', {
+                    url: '/view2/:id?',
+                    templateUrl: 'views/edit.html',
+                    controller: 'UserEditController as vm'
                 });
 
         })

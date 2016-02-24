@@ -60,8 +60,15 @@
                     })
             }
 
+            function getUser(id){
+                return $http.get(`api/users/${id}`)
+                    .then(function (response) {
+                        return response.data;
+                    })
+            }
+
             function remove(id) {
-                return $http.delete(`api/usejrs/${id}`)
+                return $http.delete(`api/users/${id}`)
                     .then(function (response) {
                         return response.data;
                     });
@@ -69,6 +76,7 @@
 
             return {
                 getUsers: getUsers,
+                getUser:getUser,
                 remove: remove
             }
         };
