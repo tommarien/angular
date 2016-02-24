@@ -53,7 +53,7 @@
 
             return userService.getUsers(page, pageSize)
                 .then(function (users) {
-                    vm.users = sortFilter(users, 'name');
+                    vm.users = users;
                 })
         }
 

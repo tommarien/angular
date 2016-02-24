@@ -17,7 +17,7 @@
                 <tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="user in $ctrl.data"> <!--| orderBy : 'name'-->
+                <tr ng-repeat="user in $ctrl.data | sort:'name'"> <!--| orderBy : 'name'-->
                     {{user}}
                     <td><img class="rowImg" ng-src="{{user.image}}"></td>
                     <td>{{user.name}}</td>
