@@ -1,49 +1,50 @@
-(function () {
-    'use strict';
+(function() {
 
     angular
         .module('myApp', [
-            'ui.bootstrap',
             'toaster',
             'ui.router',
             'ngMessages',
-            'modelFactory',
-            'myApp.controllers'
+            'modelFactory'
         ])
-        .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-            $urlRouterProvider.otherwise('view1');
+        .constant('config', {
+            urlBase: 'http://localhost:3000/api',
+            timeout: 1000
+        })
+        .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+
+            // Uncomment line below to enable html mode (remove '#' in url)
+            // $locationProvider.html5Mode(true);
+
+            $urlRouterProvider.otherwise("list");
 
             $stateProvider
-                .state('view1', {
-                    url: '/view1',
-                    templateUrl: 'views/main.html',
+                .state('list', {
+                    url: '/list',
+                    templateUrl: '/views/listView.html',
                     controller: 'UserListController as vm',
-                    /*resolve: {
-                        users: function (userService) {
-                            return userService.getUsers(0, 10);
-                        }
-                    }*/
+                    access: 'user'
                 })
-                .state('view2', {
-                    url: '/view2/:id?',
-                    templateUrl: 'views/edit.html',
-                    controller: 'UserEditController as vm'
-                });
+                .state('edit', {
+                    url: '/edit/:id?',
+                    templateUrl: '/views/editView.html',
+                    controller: 'UserEditController as vm',
+                    access: 'admin'
+                })
 
-        }])
-        .config(['$httpProvider', function ($httpProvider) {
-            $httpProvider.interceptors.push('httpInterceptor');
-        }])
-        .run(['$rootScope', '$log', function ($rootScope, $log) {
-            $rootScope.$on('$stateChangeStart',
-                function (event, toState, toParams, fromState, fromParams, options) {
-                    $log.info('State Changed from:', fromState, 'to:', toState);
-                });
+        })
+        .run(function($rootScope, $state) {
+            $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams, options){
+                //console.log('route start: ', toState, fromState);
+            });
 
-            $rootScope.$on('$stateChangeError',
-                function (event, toState, toParams, fromState, fromParams, error) {
-                    $log.error('State Error from:', fromState, 'to:', toState);
-                });
+            $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+                //console.log('route success: ', toState, fromState);
+            })
 
-        }]);
+            $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error){
+                console.log('route failure: ', error);
+            })
+        })
 })();
+

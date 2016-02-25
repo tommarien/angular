@@ -1,86 +1,51 @@
-(function () {
-    'use strict';
+(function() {
 
     angular
-        .module('myApp.controllers', [])
+        .module('myApp')
         .controller('UserListController', UserListController);
-    /*        .controller('AlertController', AlertController)*/
 
-    /*  function AlertController($scope) {
-     $scope.alert = null;
-
-     $scope.onAddAlert = onAddAlert;
-     $scope.onCloseAlert = onCloseAlert;
-
-     function onAddAlert(){
-     $scope.alert = {
-     msg: "Boeh",
-     type: "warning"
-     }
-     }
-
-     function onCloseAlert(){
-     $scope.alert = null;
-     }
-     }*/
-
-    UserListController.$inject = ['$filter', 'UserModel'];
-    function UserListController($filter, UserModel) {
-        var vm = this;
-
+    function UserListController(userService, UserModel) {
         var page = 0;
         var pageSize = 10;
+        var vm = this;
 
         // scope
         vm.gridView = false;
-        vm.users;
-        vm.message = '<b>Hello from controller</b>';
+        vm.users = [];
 
+        // scope methods
         vm.onSwitchView = onSwitchView;
         vm.onLoadMore = onLoadMore;
         vm.onDelete = onDelete;
-        vm.onNotify = onNotify;
 
-        initialize();
+        activate();
 
-        function initialize() {
+        ////////////
 
-            // Get filter in controller/component
-            var upperFilter = $filter('upper');
-
-            var sortFilter = $filter('sort');
-
-            vm.message = upperFilter('Hello World');
-
+        function activate() {
             return UserModel.queryPaged(page, pageSize)
-                .then(function (users) {
-                    vm.users = users;
-                })
+                            .then(function(users) {
+                                vm.users = users;
+                            })
         }
 
         function onSwitchView() {
             vm.gridView = !vm.gridView;
             page = 0;
             pageSize = (vm.gridView) ? 4 : 10;
-            initialize();
+            activate();
         }
 
         function onLoadMore() {
-            console.log('loadMode');
             page++;
-
             return UserModel.queryPaged(page, pageSize)
-                .then(function (users) {
-                    vm.users = vm.users.concat(users);
-                })
+                            .then(function(users) {
+                                vm.users = vm.users.concat(users);
+                            })
         }
 
         function onDelete(user) {
             user.$destroy();
-        }
-
-        function onNotify() {
-            console.log('onNotify');
         }
     }
 

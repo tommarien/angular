@@ -1,47 +1,49 @@
-(function () {
-    'use strict';
+(function() {
 
     angular
-        .module('myApp.controllers')
+        .module('myApp')
         .controller('UserEditController', UserEditController);
 
-    UserEditController.$inject = ['$scope', '$stateParams', '$state', 'UserModel'];
-    function UserEditController($scope, $stateParams, $state, UserModel) {
+    function UserEditController($scope, userService, $stateParams, $state, UserModel) {
         var vm = this;
-        var id = $stateParams.id;
 
+        // scope
         vm.user = {};
-        vm.message = 'User edit mode';
 
-        // Watch something manual prevent if possible
-        $scope.$watch('vm.user.name', function (newValue, oldValue) {
-            if (newValue === oldValue) return;
-            console.log(oldValue, newValue);
-        });
+        // scope methods
+        vm.submit = submit;
 
-        vm.Save = Save;
+        activate();
 
-        initialize();
+        ////
 
-        function initialize() {
-            if (id) {
-                UserModel.get(id)
-                    .then(function (user) {
-                        vm.user = user;
-                    });
+        function activate() {
+
+            // new user ?
+            if (!$stateParams.id) {
+                vm.user = new UserModel();
                 return;
             }
 
-            vm.user = new UserModel();
+            // get existing user
+            UserModel.get($stateParams.id)
+                     .then(function(user) {
+                         vm.user = user;
+                     })
         }
 
-        function Save(valid) {
-            if (!valid) return;
+        function submit(isValid) {
 
+            // is the form invalid, just exit
+            if (!isValid)
+                return;
+
+            // save the user
             vm.user.$save()
-                .then(function (user) {
-                    $state.go('view2', {id: user.id});
-                });
+                   .then(function() {
+                        // and go back to list
+                        $state.go('list');
+                   })
         }
     }
 

@@ -1,10 +1,21 @@
-(function () {
+(function() {
 
-    angular.module('myApp')
+    angular
+        .module('myApp')
         .filter('upper', function () {
-            return function (value, arg) {
-                return !value ? value : value.toUpperCase();
+            return function (input) {
+                if (!input)
+                    return input;
+
+                return input.toUpperCase();
+            };
+        })
+        .filter('sortBy', function () {
+            return function (input) {
+
+                console.log('sortBy:...')
+
+                return _.sortBy(input, item => item.name);
             };
         });
-
-})();
+})()

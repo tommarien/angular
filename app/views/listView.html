@@ -1,0 +1,29 @@
+<div>
+
+    <div ng-bind-html="vm.message"></div>
+
+
+    <div class="row">
+        <h1>User List</h1>
+        <button ng-click="vm.onSwitchView()" class="btn btn-success">
+            {{(!gridView) ? 'Grid View' : 'List View'}}
+        </button>
+        <a ui-sref="edit" class="btn btn-success">
+            Add
+        </a>
+        <br>
+        <br>
+    </div>
+
+    <div ng-if="!vm.gridView" class="row">
+        <table-view users="vm.users" on-remove="vm.onDelete(user)"></table-view>
+        <a src="" ng-click="vm.onLoadMore()">Add More</a>
+        <br>
+    </div>
+
+    <div ng-if="vm.gridView" class="row">
+        <grid-view users="vm.users"></grid-view>
+        <a src="" ng-click="vm.onLoadMore()">Add More</a>
+        <br>
+    </div>
+</div>

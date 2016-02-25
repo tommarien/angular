@@ -12,8 +12,14 @@ module.exports = {
 
         var page = Number(req.query.page);
         var pageSize = Number(req.query.pageSize);
+        var users;
         return userRepository.findAll({}, page, pageSize, req.query.sort)
-            .then(function(users) {
+            .then(function(_users) {
+                users = _users;
+
+                return userRepository.count();
+            })
+            .then(function(count) {
 
                 // map users list to resource list
                 var result = _.map(users, function(user){
@@ -21,7 +27,12 @@ module.exports = {
                 });
 
                 // and respond with all users (as resource)
-                res.status(200).send(result);
+                res.status(200).send({
+                    page: page,
+                    pageSize: pageSize,
+                    total: count,
+                    users: result
+                });
                 return null;
             })
             .catch(function(err) {
@@ -120,6 +131,7 @@ module.exports = {
             .then(function(user) {
                 if (!user) {
                     res.status(204).send('no content');
+                    return;  // TODO
                 }
                 var resource = userMapper.map(user);
                 return res.status(200).send(resource);

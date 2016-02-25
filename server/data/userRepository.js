@@ -18,6 +18,16 @@ module.exports = {
         return deferred.promise;
     },
 
+    count: function(query) {
+        var deferred = Q.defer();
+        UserModel.count(query, function(err, count) {
+            if (err)
+                return deferred.resolve(-1);
+            deferred.resolve(count);
+        });
+        return deferred.promise;
+    },
+
     findOne: function(query) {
         var deferred = Q.defer();
         UserModel.findOne(query, function(err, user) {

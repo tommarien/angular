@@ -1,5 +1,5 @@
 var securityService = require('../services/securityService.js');
-
+var HttpError = require('../httpError');
 
 module.exports = function authHandler(req, res, next) {
 
