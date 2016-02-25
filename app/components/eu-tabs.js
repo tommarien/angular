@@ -7,7 +7,7 @@
               <div class="tabbable">
                 <ul class="nav nav-tabs">
                     <li ng-repeat="pane in $ctrl.panes" ng-class="{ 'active' : pane.active }">
-                        <a ng-click="$ctrl.activatePane(pane)" href="">{{pane.title}}</a>
+                        <a ng-click="$ctrl.activatePane(pane)" href="">{{::pane.title}}</a>
                     </li>
                 </ul>
                 <div ng-transclude></div>
