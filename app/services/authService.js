@@ -11,7 +11,8 @@
             var resource = {
                 email: email,
                 password: password
-            }
+            };
+
             $http.post('api/auth/login', resource)
                  .then(function(response) {
                     var accessToken = response.data.accessToken;
@@ -33,7 +34,7 @@
                     // and return as promise result
                     return $rootScope.identity;
                  })
-        }
+        };
 
         // logout a user
         this.logout = function() {
@@ -43,11 +44,11 @@
             $window.sessionStorage.removeItem("token");
 
             // set anonymous identity
-            $rootScope.identity = {}
+            $rootScope.identity = {};
 
             // log and notity to others
             $rootScope.$emit('userLoggedOut', identity);
-        }
+        };
 
         // set identity on startup
         this.init = function() {
@@ -70,8 +71,6 @@
             }
 
             return $rootScope.identity
-        })
-
+        }
     }
-
 })();

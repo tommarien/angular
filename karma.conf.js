@@ -1,5 +1,5 @@
 // Karma configuration
-module.exports = function(config) {
+module.exports = function (config) {
     config.set({
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -10,15 +10,25 @@ module.exports = function(config) {
 
         // list of files / patterns to load in the browser
         files: [
+            'bower_components/underscore/underscore.js',
+            'bower_components/angular/angular.js',
+            'bower_components/angular-mocks/angular-mocks.js',
+            'bower_components/AngularJS-Toaster/toaster.js',
+            'bower_components/angular-ui-router/release/angular-ui-router.js',
+            'bower_components/angular-model-factory/dist/angular-model-factory.js',
+            'bower_components/angular-messages/angular-messages.js',
+            'app.js',
+            'filters/*.js',
+            'services/*.js',
             '**/*.spec.js'
         ],
 
-        'plugins' : [
+        'plugins': [
             'karma-mocha',
             'karma-chai',
             'karma-chai-sinon',
             'karma-jquery-chai',
-            'karma-phantomjs-launcher',
+            'karma-phantomjs2-launcher',
             'karma-sinon',
             'karma-spec-reporter'
         ],
@@ -42,7 +52,7 @@ module.exports = function(config) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ['PhantomJS'],
+        browsers: ['PhantomJS2'],
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits

@@ -16,7 +16,7 @@
             // Uncomment line below to enable html mode (remove '#' in url)
             // $locationProvider.html5Mode(true);
 
-            $urlRouterProvider.otherwise("list");
+/*            $urlRouterProvider.otherwise("list");
 
             $stateProvider
                 .state('list', {
@@ -30,7 +30,7 @@
                     templateUrl: '/views/editView.html',
                     controller: 'UserEditController as vm',
                     access: 'admin'
-                })
+                })*/
 
         })
         .run(function($rootScope, $state) {
