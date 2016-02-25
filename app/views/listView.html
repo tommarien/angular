@@ -5,8 +5,11 @@
 
     <div class="row">
         <h1>User List</h1>
+        <eu-button clicked="vm.onSwitchView()">{{(!vm.gridView) ? 'EU Grid View' : 'EU List View'}}</eu-button>
+        <br>
+
         <button ng-click="vm.onSwitchView()" class="btn btn-success">
-            {{(!gridView) ? 'Grid View' : 'List View'}}
+            {{(!vm.gridView) ? 'Grid View' : 'List View'}}
         </button>
         <a ui-sref="edit" class="btn btn-success">
             Add
