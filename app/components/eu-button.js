@@ -9,7 +9,6 @@
                 if ($attrs.href) {
                     return `
                     <a href="${$attrs.href}" class="btn btn-success" ng-transclude>
-
                     </a>
                     `;
                 }
