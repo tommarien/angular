@@ -20,6 +20,7 @@ module.exports = function (config) {
             'app.js',
             'filters/*.js',
             'services/*.js',
+            'models/userModel.js',
             '**/*.spec.js'
         ],
 

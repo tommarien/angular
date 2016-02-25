@@ -19,7 +19,7 @@
                     return (!this.id);
                 },
                 fullAddress: function() {
-                    return `${this.address} ${this.zip} ${this.city}`
+                    return this.address + ' ' +  this.zip + ' ' + this.city;
                 }
             },
 
