@@ -13,6 +13,16 @@ module.exports = function(config) {
             '**/*.spec.js'
         ],
 
+        'plugins' : [
+            'karma-mocha',
+            'karma-chai',
+            'karma-chai-sinon',
+            'karma-jquery-chai',
+            'karma-phantomjs-launcher',
+            'karma-sinon',
+            'karma-spec-reporter'
+        ],
+
         // list of files to exclude
         exclude: [
             'bower_components/**/*.spec.js'
