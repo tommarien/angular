@@ -38,7 +38,7 @@
                 tabCtrl: '^euTabs'
             },
             template: `
-              <div ng-if="$ctrl.active" class="tab-content" ng-transclude>
+              <div ng-if="$ctrl.active" class="tab-content" ng-class="{selected: $ctrl.active}" ng-transclude>
               </div>
             `,
             bindings: {
