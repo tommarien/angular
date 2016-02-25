@@ -1,13 +1,15 @@
 describe('user model', function () {
 
     var UserModel;
+    var $httpBackend;
 
     beforeEach(module('myApp'));
 
     beforeEach(function () {
-        angular.mock.inject(function (_UserModel_) {
+        angular.mock.inject(function (_UserModel_, _$httpBackend_) {
             UserModel = _UserModel_;
-        })
+            $httpBackend = _$httpBackend_;
+        });
     });
 
     describe('isNew', function () {
@@ -40,5 +42,33 @@ describe('user model', function () {
         it('returns address, zip, city concatenated', function () {
             expect(user.fullAddress()).to.equal('address zip city');
         });
+    });
+
+    describe('query after request', function () {
+
+        var reply;
+
+        beforeEach(function () {
+            reply = {
+                total: 100,
+                users: [{id: 1, name: 'name1'}]
+            };
+
+            $httpBackend
+                .when('GET', function () {
+                    return true;
+                })
+                .respond(reply);
+        });
+
+        it('adds total to the data', function () {
+            UserModel.query()
+                .then(function (data) {
+                    expect(data.total).to.equal(100);
+                });
+
+            $httpBackend.flush();
+        });
+
     });
 });
